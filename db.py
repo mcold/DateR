@@ -1,52 +1,64 @@
 # coding: utf-8
 
-from sqlalchemy import create_engine
+from sqlalchemy import * #create_engine, MetaData, Table, Column
 
-class db:
+class _db:
 
     def __init__(self):
-        self.cr_coutry()
-        self.cr_action()
-        self.cr_period()
-        self.cr_person()
-        self.cr_act_country()
-        self.cr_act_period()
-        self.cr_country_period()
+        self.engine = create_engine('sqlite:///DateR.db')
+        self.metadata = MetaData()
+        self.cr_tables()
 
 
-    def cr_coutry(self):
+
+    def cr_tables(self):
         """
-        Create table country
-        :return: 
+        Create tables
         """
-        pass
+        Table('countries', self.metadata,
+                        Column('id', Integer(), primary_key=True, autoincrement=True),
+                        Column('country', String(100), unique=True, nullable=False)
+                )
 
-    def cr_action(self):
-        pass
+        Table('actions', self.metadata,
+                        Column('id', Integer(), primary_key=True, autoincrement=True),
+                        Column('action', String(100), unique=True, nullable=False),
+                        Column('start_date', String(25)),
+                        Column('finish_date', String(25))
+                )
 
-    def cr_period(self):
-        pass
+        Table('periods', self.metadata,
+                        Column('id', Integer(), primary_key=True, autoincrement=True),
+                        Column('period', String(50), unique=True, nullable=False),
+                        Column('start_date', String(25)),
+                        Column('finish_date', String(25))
+                )
 
-    def cr_country_period(self):
-        pass
+        Table('persons', self.metadata,
+                        Column('id', Integer(), primary_key=True, autoincrement=True),
+                        Column('person', String(100), unique=True, nullable=False)
+                )
 
-    def cr_act_country(self):
-        pass
+        Table('country_period', self.metadata,
+                               Column('id', Integer(), primary_key=True, autoincrement=True),
+                               Column('country_id', ForeignKey('countries.id'), nullable=False),
+                               Column('period_id', ForeignKey('periods.id'), nullable=False)
+                )
 
-    def cr_act_period(self):
-        pass
+        Table('act_country', self.metadata,
+                                Column('id', Integer(), primary_key=True, autoincrement=True),
+                                Column('act_id', ForeignKey('actions.id'), nullable=False),
+                                Column('country_id', ForeignKey('countries.id'), nullable=False)
+                )
 
-    # TODO: it's for future
-    def cr_person(self):
-        pass
+        Table('act_period', self.metadata,
+                            Column('id', Integer(), primary_key=True, autoincrement=True),
+                            Column('act_id', ForeignKey('actions.id'), nullable=False),
+                            Column('period_id', ForeignKey('countries.id'), nullable=False)
+                )
+        self.metadata.create_all(self.engine)
+
+
 
 if __name__ == '__main__':
-    s = {}
-    print(type(s))
-
-    c = 'c'
-    print(type(c[0]))
-
-
-    l = [1, 'c', True]
-    print(l)
+    db = _db()

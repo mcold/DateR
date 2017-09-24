@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>ActionWindow</class>
+ <widget class="QMainWindow" name="ActionWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>459</width>
-    <height>317</height>
+    <height>322</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Action</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QListWidget" name="lstCountries">
@@ -62,8 +62,18 @@
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
+    <property name="minimumDate">
+     <date>
+      <year>1753</year>
+      <month>1</month>
+      <day>1</day>
+     </date>
+    </property>
     <property name="displayFormat">
      <string>dd MMMM yyyy</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QCheckBox" name="cbPeriod">
@@ -91,8 +101,18 @@
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
+    <property name="minimumDate">
+     <date>
+      <year>1753</year>
+      <month>1</month>
+      <day>1</day>
+     </date>
+    </property>
     <property name="displayFormat">
      <string>dd MMMM yyyy</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="lblCountries">
@@ -171,6 +191,32 @@
     </property>
     <property name="text">
      <string>Choose</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnInsert">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>250</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Insert</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnClear">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>250</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear</string>
     </property>
    </widget>
   </widget>
